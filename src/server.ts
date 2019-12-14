@@ -5,8 +5,8 @@ import mongoose from "mongoose";
 
 import path from "path";
 import cors from "cors";
-import routes from "./controllers";
-import { initPlayers } from "./init";
+import apiRoutes from "./controllers";
+import viewRoutes from "./views";
 
 // Express configuration
 let app = express();
@@ -36,8 +36,10 @@ app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// routes
-app.use("/", routes);
+// api routes
+app.use("/", apiRoutes);
+// view routes
+app.use("/", viewRoutes);
 
 // set port for server
 const { PORT = 3000 } = process.env;
