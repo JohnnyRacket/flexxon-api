@@ -12,7 +12,7 @@ import { initPlayers } from "./init";
 let app = express();
 
 // Mongo connection
-const { MONGODB_URI = "mongodb://127.0.0.1:27017/local" } = process.env;
+const { MONGODB_URI = "mongodb://127.0.0.1:27017/local2" } = process.env;
 
 mongoose.connect(
   MONGODB_URI,
@@ -21,9 +21,7 @@ mongoose.connect(
     if (err) {
       console.log(err.message);
     } else {
-      console.log("Successfully Connected!");
-      // init players for now
-      initPlayers();
+      console.log("Successfully Connected!!");
     }
   }
 );

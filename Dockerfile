@@ -11,10 +11,11 @@ RUN npm install
 # Copy all other source code to work directory
 ADD . /usr/src/app
 
+RUN npm install -g typescript
 # TypeScript
-RUN npm run tsc
+RUN tsc
 
 # Start
-WORKDIR /usr/src/dist
+WORKDIR /usr/src/app/dist
 CMD [ "node", "server.js" ]
 EXPOSE 3000

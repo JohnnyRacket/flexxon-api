@@ -47,17 +47,26 @@ router.get(
   }
 );
 
-router.get("/add/:name", (req: Request, res: Response) => {
-  const name = req.params.name;
-  var player = new Player({ name: name, wins: 6, losses: 9 });
+router.post("/load", (req: Request, res: Response) => {
+  const players = req.body;
+  let p;
+  for (p of players) {
+    const wins = parseInt(p.wins);
+    const losses = parseInt(p.losses);
+    var player = new Player({
+      name: p.name,
+      wins,
+      losses
+    });
 
-  player.save((err: any) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(player);
-    }
-  });
+    player.save((err: any) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(player);
+      }
+    });
+  }
 });
 
 export default router;
