@@ -47,6 +47,10 @@ router.get(
   }
 );
 
+/* 
+The functions below allow us to bulk remove and add players while the application is running.
+*/
+
 router.post("/load", (req: Request, res: Response) => {
   const players = req.body;
   let p;
@@ -60,13 +64,19 @@ router.post("/load", (req: Request, res: Response) => {
     });
 
     player.save((err: any) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(player);
-      }
+      if (err) res.send(err);
     });
   }
+});
+
+router.delete("/remove", (req: Request, res: Response) => {
+  Player.deleteMany({}, (err: any) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("All Players Removed.");
+    }
+  });
 });
 
 export default router;
