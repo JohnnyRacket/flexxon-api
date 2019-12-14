@@ -1,12 +1,12 @@
 import { Router, Request, Response } from "express";
 
-import users from "./users";
+import players from "./players";
 import teams from "./teams";
 import events from "./events";
 
 const routes = Router();
 
-routes.use("/users", users);
+routes.use("/players", players);
 routes.use("/teams", teams);
 routes.use("/events", events);
 

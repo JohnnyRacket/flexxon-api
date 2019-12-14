@@ -8,7 +8,7 @@ const router = Router();
  * Contact form page.
  */
 router.get("/", (req: Request, res: Response) => {
-  res.send("all the users :)");
+  res.send("all the teams :)");
 });
 
 /**
@@ -24,7 +24,7 @@ router.get(
       .isNumeric()
   ],
   async (req: Request, res: Response) => {
-    const userId = req.params.id;
+    const teamId = req.params.id;
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -32,7 +32,7 @@ router.get(
       return;
     }
 
-    res.send("a specific teams of id " + userId);
+    res.send("a specific teams of id " + teamId);
   }
 );
 

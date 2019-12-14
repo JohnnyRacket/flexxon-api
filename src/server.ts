@@ -1,14 +1,32 @@
 import express from "express";
 import bodyParser from "body-parser";
 import compression from "compression";
+import mongoose from "mongoose";
+
 import path from "path";
 import cors from "cors";
 import routes from "./controllers";
+import { initPlayers } from "./init";
 
 // Express configuration
 let app = express();
 
-//app.set("views", path.join(__dirname, "../views"));
+// Mongo connection
+const { MONGODB_URI = "mongodb://127.0.0.1:27017/local" } = process.env;
+
+mongoose.connect(
+  MONGODB_URI,
+  { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
+  (err: any) => {
+    if (err) {
+      console.log(err.message);
+    } else {
+      console.log("Successfully Connected!");
+      // init players for now
+      initPlayers();
+    }
+  }
+);
 
 // set up cors middleware
 app.use(cors());
